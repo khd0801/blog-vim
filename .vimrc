@@ -9,7 +9,7 @@ call vundle#begin()
 	" required!
 	Plugin 'VundleVim/Vundle.vim'
 
-    " vim 하단에 파일 정보 띄우기
+	" vim 하단에 파일 정보 띄우기
 	Plugin 'vim-airline/vim-airline'
 	Plugin 'vim-airline/vim-airline-themes'
    
@@ -18,6 +18,9 @@ call vundle#begin()
 	Plugin 'ctrlpvim/ctrlp.vim'
 
 	Plugin 'tpope/vim-fugitive'
+
+	Plugin 'wesleyche/srcexpl'
+
     " ...
 call vundle#end()
 filetype plugin indent on     " required!
@@ -227,3 +230,62 @@ let g:ctrlp_root_markers = ['ctrlp-marker']
 " <c-z>, <c-o> 검색된 결과물에 <c-z>로 마크를 하고 <c-o>로 오픈(멀티마크 가능) 
 " <c-y> 검색입력어로 된 파일을 만든다. 파일 위치는 검색 폴더의 최상위 위치
 " :help ctrlp-mappings 키 맵핑에 관한 설명
+
+
+"-----------------------------------------------------------------------"
+" Source Explorer 환경설정
+"-----------------------------------------------------------------------"
+nmap <F8> :SrcExplToggle<CR>		" F8 key = SrcExpl TOggle
+
+let g:SrcExpl_winHeight = 12		" SrcExpl 윈도우 높이 지정
+let g:SrcExpl_refreshTime = 100		" refreshing time = 100ms
+let g:SrcExpl_jumpKey = "<ENTER>"		" 해당 definition으로 jump
+let g:SrcExpl_gobackKey = "<SPACE>"		" back
+let g:SrcExpl_pluginList = [
+        \ "__Tag_List__",
+        \ "_NERD_tree_",
+        \ "Source_Explorer"
+        \ ]
+
+" // The color schemes used by Source Explorer. There are five color schemes
+" // supported for now - Red, Cyan, Green, Yellow and Magenta. Source Explorer
+" // will pick up one of them randomly when initialization.
+let g:SrcExpl_colorSchemeList = [
+        \ "Red",
+        \ "Cyan",
+        \ "Green",
+        \ "Yellow",
+        \ "Magenta"
+        \ ]
+
+" // The color schemes used by Source Explorer. There are five color schemes
+" // supported for now - Red, Cyan, Green, Yellow and Magenta. Source Explorer
+" // will pick up one of them randomly when initialization.
+let g:SrcExpl_colorSchemeList = [
+        \ "Red",
+    \ ]
+
+" // Enable/Disable the local definition searching, and note that this is not 
+" // guaranteed to work, the Source Explorer doesn't check the syntax for now. 
+" // It only searches for a match with the keyword according to command 'gd' 
+let g:SrcExpl_searchLocalDef = 1 
+
+" // Workaround for Vim bug @https://goo.gl/TLPK4K as any plugins using autocmd for
+" // BufReadPre might have conflicts with Source Explorer. e.g. YCM, Syntastic etc.
+let g:SrcExpl_nestedAutoCmd = 1
+
+" // Do not let the Source Explorer update the tags file when opening 
+let g:SrcExpl_isUpdateTags = 0 
+
+" // Use 'Exuberant Ctags' with '--sort=foldcase -R .' or '-L cscope.files' to 
+" // create/update the tags file 
+let g:SrcExpl_updateTagsCmd = "ctags --sort=foldcase -R ." 
+
+" // Set "<F12>" key for updating the tags file artificially 
+let g:SrcExpl_updateTagsKey = "<F12>" 
+
+" // Set "<F3>" key for displaying the previous definition in the jump list 
+let g:SrcExpl_prevDefKey = "<C-k>" 
+
+" // Set "<F4>" key for displaying the next definition in the jump list 
+let g:SrcExpl_nextDefKey = "<C-j>" 
