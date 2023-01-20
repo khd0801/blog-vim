@@ -13,13 +13,21 @@ call vundle#begin()
 	Plugin 'vim-airline/vim-airline'
 	Plugin 'vim-airline/vim-airline-themes'
    
+	"vim corlor/scheme 수정
 	Plugin 'morhetz/gruvbox'
-
+	
+	" 파일 및 폴더 탐색
 	Plugin 'ctrlpvim/ctrlp.vim'
 
+	" vim 사용중 git 명령어 사용
 	Plugin 'tpope/vim-fugitive'
 
+	"vim 하단에 커서가 있는 함수나 변수의 정의 부분을 출력
 	Plugin 'wesleyche/srcexpl'
+
+	"명령어 자동완성 플러그인(inc + <C-a> : #include<>)
+	Plugin 'SirVer/ultisnips'
+	Plugin 'honza/vim-snippets'
 
     " ...
 call vundle#end()
@@ -289,3 +297,18 @@ let g:SrcExpl_prevDefKey = "<C-k>"
 
 " // Set "<F4>" key for displaying the next definition in the jump list 
 let g:SrcExpl_nextDefKey = "<C-j>" 
+
+
+"-----------------------------------------------------------------------"
+" ultisnips&vim-snippets Trigger Configuration
+"-----------------------------------------------------------------------""
+" Trigger configuration. You need to change this to something other than <tab>
+" if you use one of the following:
+" " - https://github.com/Valloric/YouCompleteMe
+" " - https://github.com/nvim-lua/completion-nvim
+let g:UltiSnipsExpandTrigger="<C-a>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+" let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips']
