@@ -29,6 +29,10 @@ call vundle#begin()
 	Plugin 'SirVer/ultisnips'
 	Plugin 'honza/vim-snippets'
 
+	" [] {} 등 괄호 입력시 자동으로 닫아주는 플러그인
+	Plugin 'jiangmiao/auto-pairs' 
+
+
     " ...
 call vundle#end()
 filetype plugin indent on     " required!
