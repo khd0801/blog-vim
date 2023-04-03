@@ -7,9 +7,14 @@ int sumFunc(int a, int b) {
 	return c;
 }
 
+int testFunc(void) {
+
+}
+
 void main(void) {
 	
 	int sum = 0;
+	int array[3] = {0,};
 
 	sum = sumFunc(10, 3);
 	test();
