@@ -32,6 +32,8 @@ call vundle#begin()
 	" [] {} 등 괄호 입력시 자동으로 닫아주는 플러그인
 	Plugin 'jiangmiao/auto-pairs' 
 
+	Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
+	Plugin 'junegunn/fzf.vim'
 
     " ...
 call vundle#end()
@@ -305,7 +307,7 @@ let g:SrcExpl_nextDefKey = "<C-j>"
 
 "-----------------------------------------------------------------------"
 " ultisnips&vim-snippets Trigger Configuration
-"-----------------------------------------------------------------------""
+"-----------------------------------------------------------------------"
 " Trigger configuration. You need to change this to something other than <tab>
 " if you use one of the following:
 " " - https://github.com/Valloric/YouCompleteMe
@@ -316,3 +318,49 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 " let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips']
+
+
+"-----------------------------------------------------------------------"
+" fzf layout
+"-----------------------------------------------------------------------"
+" An action can be a reference to a function that processes selected lines
+function! s:build_quickfix_list(lines)
+  call setqflist(map(copy(a:lines), '{ "filename": v:val, "lnum": 1 }'))
+  copen
+  cc
+endfunction
+
+let g:fzf_action = {
+  \ 'ctrl-q': function('s:build_quickfix_list'),
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+"let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9,'yoffset':0.5,'xoffset': 0.5 } }
+
+" - down / up / left / right
+"let g:fzf_layout = { 'left': '50%' }
+
+let $FZF_DEFAULT_OPTS = '--layout=reverse --inline-info'
+let $FZF_DEFAULT_COMMAND="rg --files --hidden --glob '!.git/**'"
+
+" Customize fzf colors to match your color scheme
+" - fzf#wrap translates this to a set of `--color` options
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+"Get Files
+command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--inline-info']}), <bang>0)
