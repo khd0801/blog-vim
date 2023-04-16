@@ -272,9 +272,8 @@ let g:SrcExpl_colorSchemeList = [
         \ "Magenta"
         \ ]
 
-" // The color schemes used by Source Explorer. There are five color schemes
 " // supported for now - Red, Cyan, Green, Yellow and Magenta. Source Explorer
-" // will pick up one of them randomly when initialization.
+" // will pick up Red
 let g:SrcExpl_colorSchemeList = [
         \ "Red",
     \ ]
