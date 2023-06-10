@@ -140,6 +140,74 @@ filetype plugin indent on     " required!
 	" 키워드 입력시 점진적 검색
 	set incsearch
 	set spell
+
+"-----------------------------------------------------------------------"
+" User Key Setting
+"-----------------------------------------------------------------------"
+let mapleader = ","
+
+" 원래 이 단축키로 바인딩해 두었던 :tabnew를 대체한다.
+nmap <leader>N :enew<cr>
+" 다음 버퍼로 이동
+nnoremap <leader>z :bp<CR>
+" 이전 버퍼로 이동
+nnoremap <leader>x :bn<CR>
+" 현재 버퍼를 닫고 이전 버퍼로 이동
+" 탭 닫기 단축키를 대체한다.
+nmap <leader>bz :bp <BAR> bd #<CR>
+
+" 모든 버퍼와 각 버퍼 상태 출력
+nmap <leader>bl :ls<CR>
+
+"fzf excute
+nmap <leader>f :FZF<cr>
+
+"Rg excute
+"Input Pattern
+nmap <leader>r :RG<Space>
+"Input cursor location
+nmap <leader>R :RG <C-R>=expand("<cword>")<CR><CR>
+
+" Key Setting - resize windows
+nnoremap <silent> <Leader>= :exe "resize +3"<CR>
+nnoremap <silent> <Leader>- :exe "resize -3"<CR>
+nnoremap <silent> <Leader>] :exe "vertical resize +8"<CR>
+nnoremap <silent> <Leader>[ :exe "vertical resize -8"<CR>
+
+nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> <Leader>_ :exe "resize " . (winheight(0) * 2/3)<CR>
+nnoremap <silent> <Leader>} :exe "vertical resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> <Leader>{ :exe "vertical resize " . (winheight(0) * 2/3)<CR>
+
+nnoremap K kzz
+nnoremap J jzz
+
+nnoremap <Leader>h :noh<CR>
+
+"-----------------------------------------------------------------------"
+" User  환경설정
+"-----------------------------------------------------------------------"
+" F2 [], {} 괄호에 대한 폴딩 실행
+nmap <F2> v]}zf
+nmap <F3> :Git blame<cr>
+" F4 누를 경우 컴파일(Makeile 있어야 함.)
+nmap <F4> :w<cr> : make<cr> : ccl<cr>  cw<cr>
+" F5 누를시 현재 라인 주석, 범위 설정 후 누르면 범위 주석
+nmap <F5> :norm I//<cr>
+" F6 누를시 주석 해제
+nmap <F6> :norm ^xx<cr>
+" F7 key = Tag List Toggle
+nmap <F7> :TlistToggle<CR>
+" F8 key = SrcExpl Toggle
+nmap <F8> :SrcExplToggle<CR>
+"nmap <F10> :let g:view_source = 0<CR>
+nmap <F10> :!rm -rf cscope.files <CR> :!find . 
+	\ \( -name '*.c' -o -name '*.cpp' -o -name '*.cc'
+	\ -o -name '*.h' -o -name '*.s' -o -name '*.S' \) 
+	\ -print > cscope.files <CR> :!cscope -i cscope.files <CR><CR>
+" F12 tags 생성
+nmap <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q ./ <CR><CR>
+
 "----------------------------------------------------------------------"
 " AirLine
 "----------------------------------------------------------------------"
