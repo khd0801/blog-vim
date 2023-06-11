@@ -146,16 +146,18 @@ filetype plugin indent on     " required!
 "-----------------------------------------------------------------------"
 let mapleader = ","
 
-" 원래 이 단축키로 바인딩해 두었던 :tabnew를 대체한다.
-nmap <leader>N :enew<cr>
+" 새로운 파일을 열때 사용, 경로를 입력해야 한다. 
+nmap <leader>n :e
+" 가로로 새로운 윈도우를 열 때 사용, 파일 경로 입력 필요
+nmap <leader>s :sp
+" 세로로 새로운 윈도우를 열 때 사용, 파일 경로 입력 필요
+nmap <leader>v :vsp
 " 다음 버퍼로 이동
 nnoremap <leader>z :bp<CR>
 " 이전 버퍼로 이동
 nnoremap <leader>x :bn<CR>
 " 현재 버퍼를 닫고 이전 버퍼로 이동
-" 탭 닫기 단축키를 대체한다.
 nmap <leader>bz :bp <BAR> bd #<CR>
-
 " 모든 버퍼와 각 버퍼 상태 출력
 nmap <leader>bl :ls<CR>
 
