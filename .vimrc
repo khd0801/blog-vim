@@ -49,6 +49,7 @@ call vundle#begin()
 	Plugin 'haya14busa/incsearch-fuzzy.vim'
 	Plugin 'haya14busa/incsearch-easymotion.vim'
 
+	Plugin 'preservim/nerdcommenter'
 
 	" ...
 call vundle#end()
