@@ -8,6 +8,8 @@ int sumFunc(int a, int b) {
 }
 
 int testFunc(void) {
+	
+	printf("testFunc\n");
 
 }
 
